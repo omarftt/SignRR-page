@@ -1,0 +1,273 @@
+/* SignRR project page: blue / teal / amber palette and the components the template lacks.
+   Loaded after the template's index.css. */
+
+:root {
+  --ink: #17212B;
+  --muted: #5A6672;
+  --blue: #1F4E8C;
+  --blue-dark: #173B6B;
+  --blue-soft: #EAF0F8;
+  --teal: #0F766E;
+  --amber: #E0A21B;
+  --red: #B23A2E;
+  --surface: #F5F7FA;
+  --line: #E3E7EC;
+  --title-font: 'Google Sans', 'Noto Sans', sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { color: var(--ink); }
+a { color: var(--blue); }
+a:hover { color: var(--blue-dark); text-decoration: underline; }
+.title, .subtitle, .content, strong, .content strong { color: var(--ink); }
+.title.is-3, .title.is-1 { font-family: var(--title-font); }
+.hero.is-light { background-color: var(--surface); color: var(--ink); }
+.hero.is-light .title { color: var(--ink); }
+
+/* Thin rule between consecutive white sections */
+.section.divided { position: relative; }
+.section.divided::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(1152px, calc(100% - 3rem));
+  border-top: 1px solid var(--line);
+}
+
+/* ---------- Hero ---------- */
+.publication-title { font-weight: 700; line-height: 1.18; letter-spacing: -0.01em; max-width: 21em; margin-left: auto; margin-right: auto; }
+.publication-title .brand { color: var(--blue); }
+.publication-authors { color: var(--ink); }
+.publication-authors a { color: var(--blue) !important; }
+.publication-authors sup { color: var(--muted); }
+.affiliations { color: var(--muted); margin-top: .45rem; }
+.affiliations .author-block { margin: 0 .55rem; }
+.logo-row { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 1.75rem; margin: 1.4rem 0 1rem; }
+.logo-row img { height: 46px; width: auto; }
+.venue { font-family: var(--title-font); font-weight: 700; font-size: 1.15rem; letter-spacing: .03em; color: var(--ink); margin-bottom: .6rem; }
+
+.publication-links .button { font-family: var(--title-font); margin: 5px 2px; }
+.publication-links .button.is-dark { background-color: var(--blue); color: #fff; }
+.publication-links .button.is-dark:hover,
+.publication-links .button.is-dark:focus { background-color: var(--blue-dark); color: #fff; }
+.button.is-soon,
+.button.is-soon:hover { background: #fff; border: 1px solid #C3CCD6; color: var(--muted); cursor: default; }
+.button.is-soon .soon {
+  margin-left: .5em;
+  padding: .1em .6em;
+  border-radius: 999px;
+  background: var(--surface);
+  font-size: .72em;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+
+/* ---------- Teaser ---------- */
+.teaser .hero-body { padding-top: .5rem; padding-bottom: 2.5rem; }
+.teaser-line { margin-top: 1.2rem !important; font-family: var(--title-font); font-size: 1.3rem; color: var(--ink); }
+
+/* ---------- Section heads and text ---------- */
+.section-head { text-align: center; margin-bottom: 1.75rem; }
+.eyebrow {
+  font-family: var(--title-font);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: .4rem;
+}
+.section-head .title { font-weight: 700; font-size: clamp(1.5rem, 2.6vw, 1.95rem); line-height: 1.25; }
+.lines { margin-top: 1.6rem; }
+.lines p { margin-bottom: .6rem !important; }
+
+/* ---------- Figures and captions ---------- */
+.figure img { display: block; width: 100%; height: auto; }
+.figure figcaption,
+.table-figure figcaption,
+.caption { font-size: .92rem; color: var(--muted); text-align: center; margin-top: .6rem; }
+
+/* Numbered markers on paper Fig. 2, as on the talk slides */
+.marker-frame { position: relative; }
+.marker {
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--amber);
+  color: var(--ink);
+  font-family: var(--title-font);
+  font-weight: 700;
+  font-size: 1rem;
+  box-shadow: 0 0 0 2px #fff, 0 1px 4px rgba(23, 33, 43, .3);
+}
+.marker-frame .marker { position: absolute; transform: translate(-50%, -50%); }
+.steps { margin-top: 1.4rem; }
+.step { display: flex; align-items: flex-start; gap: .8rem; }
+.step-title { font-family: var(--title-font); font-weight: 700; font-size: 1.1rem; margin-bottom: .2rem; }
+
+/* Paper tables with the SignRR row outlined */
+.table-figure { margin: 0 0 1.8rem; }
+.table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.hl-frame { position: relative; }
+.hl-frame img { display: block; width: 100%; height: auto; }
+.row-outline { position: absolute; outline: 3px solid var(--amber); outline-offset: -1.5px; border-radius: 3px; pointer-events: none; }
+
+.callout {
+  background: var(--surface);
+  border-left: 4px solid var(--amber);
+  border-radius: 0 6px 6px 0;
+  padding: .9rem 1.15rem;
+  margin-top: 1.4rem;
+}
+
+/* ---------- Motivation figure (slide 2 of the talk) ---------- */
+.paradigms { margin: 0 auto 1rem; }
+.paradigm { padding: 1.2rem 0 1.4rem; }
+.paradigm + .paradigm { border-top: 1px solid var(--line); }
+.paradigm-head { font-family: var(--title-font); font-size: 1.2rem; margin-bottom: .9rem; }
+.paradigm-body {
+  display: grid;
+  grid-template-columns: 116px 30px minmax(0, 1fr) 30px minmax(0, 1.3fr) 210px;
+  align-items: center;
+  column-gap: 12px;
+}
+.glosses {
+  display: flex;
+  flex-direction: column;
+  gap: .32rem;
+  padding: .55rem .5rem .6rem;
+  background: var(--blue-soft);
+  border: 1.5px solid #7D9BC4;
+  border-radius: 8px;
+}
+.glosses-title { font-family: var(--title-font); font-weight: 700; font-size: .88rem; text-align: center; }
+.chip { display: flex; align-items: center; gap: .25rem; }
+.chip i { width: 1.4em; font-family: 'Times New Roman', serif; font-size: .82rem; color: var(--muted); }
+.chip > span {
+  flex: 1;
+  padding: .05rem .3rem;
+  background: #fff;
+  border: 1px solid #93A3B6;
+  border-radius: 999px;
+  font-family: var(--title-font);
+  font-size: .78rem;
+  text-align: center;
+}
+.chip-gap { text-align: center; color: var(--muted); line-height: .9; }
+.arrow { position: relative; height: 2px; margin-right: 8px; background: var(--ink); }
+.arrow::after {
+  content: "";
+  position: absolute;
+  right: -8px;
+  top: -5px;
+  border-left: 9px solid var(--ink);
+  border-top: 6px solid transparent;
+  border-bottom: 6px solid transparent;
+}
+.model-box { padding: 1.25rem .8rem; background: #F6D7EB; border: 1.5px solid #2F3440; border-radius: 10px; text-align: center; }
+.model-box strong { display: block; font-family: var(--title-font); font-size: 1.15rem; }
+.model-box span { font-size: .88rem; }
+.flow-step img { display: block; width: 100%; height: auto; }
+.flow-title { font-family: var(--title-font); font-weight: 700; font-size: .95rem; text-align: center; margin-bottom: .35rem; }
+.flow-note { margin-top: .45rem; font-size: .86rem; color: var(--muted); text-align: center; }
+.legend-key { margin-bottom: .3rem; font-size: .82rem; color: var(--muted); text-align: right; }
+.legend-key .swatch { display: inline-block; width: 12px; height: 12px; margin-right: .35rem; border: 2px solid #FA8907; vertical-align: -1px; }
+.verdicts { list-style: none; margin: 0; padding-left: .4rem; }
+.verdicts li { display: flex; justify-content: space-between; align-items: flex-start; gap: .75rem; }
+.verdicts li + li { margin-top: .9rem; }
+.verdicts strong { display: block; font-family: var(--title-font); font-weight: 500; font-size: 1.12rem; line-height: 1.25; }
+.verdicts em { font-style: normal; font-size: .86rem; color: var(--muted); }
+.mark { font-size: 1.35rem; line-height: 1.2; }
+.mark.yes { color: var(--teal); }
+.mark.no { color: var(--red); }
+
+/* ---------- Qualitative comparison ---------- */
+.seq-tabs { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .4rem; margin-bottom: 1.1rem; }
+.seq-label { margin-right: .35rem; font-size: .9rem; color: var(--muted); }
+.seq-tab {
+  padding: .28rem .85rem;
+  background: #fff;
+  border: 1px solid #CBD3DC;
+  border-radius: 999px;
+  color: var(--ink);
+  font-family: var(--title-font);
+  font-size: .92rem;
+  font-weight: 500;
+  line-height: 1.3;
+  cursor: pointer;
+}
+.seq-tab:hover { border-color: var(--blue); }
+.seq-tab[aria-selected="true"] { background: var(--blue); border-color: var(--blue); color: #fff; }
+.seq-tab:focus-visible,
+.button:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; }
+.compare-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+.clip { background: #fff; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; }
+.clip video { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: contain; background: #fff; }
+.clip figcaption { padding: .45rem .3rem .5rem; border-top: 1px solid var(--line); font-family: var(--title-font); font-weight: 500; font-size: .95rem; text-align: center; }
+.clip.is-ours { border-color: var(--amber); box-shadow: 0 0 0 2px var(--amber); }
+.clip.is-ours figcaption { font-weight: 700; }
+.compare-bar { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: .6rem 1rem; margin-top: .8rem; }
+.compare-bar .caption { margin: 0; text-align: left; }
+.compare-bar .buttons { margin: 0; }
+.compare-bar .buttons .button { margin-bottom: 0; font-family: var(--title-font); }
+[data-seq-name] { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: .85em; word-break: break-all; }
+.fig3 { margin-top: 2.6rem; }
+.fig3 img { padding: 12px; background: #fff; border: 1px solid var(--line); border-radius: 10px; }
+
+/* ---------- Video, BibTeX, footer ---------- */
+.summary-video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; border-radius: 10px; box-shadow: 0 2px 12px rgba(23, 33, 43, .12); }
+.bibtex-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: .8rem; }
+.bibtex-head .title { margin-bottom: 0 !important; font-family: var(--title-font); }
+.bibtex-head .button { font-family: var(--title-font); }
+#BibTeX pre { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; color: var(--ink); font-size: .85rem; }
+.footer { padding: 2.5rem 1.5rem 3rem; background: var(--surface); border-top: 1px solid var(--line); font-size: .9rem; }
+.footer .content { color: var(--muted); }
+.footer .content strong { color: var(--ink); }
+.nowrap { white-space: nowrap; }
+
+/* ---------- Narrower screens ---------- */
+@media screen and (max-width: 1215px) {
+  .paradigm-body { grid-template-columns: 110px 26px minmax(0, 1fr) 26px minmax(0, 1.3fr); row-gap: 1.1rem; }
+  .verdicts { grid-column: 1 / -1; display: flex; justify-content: center; gap: 3rem; padding-left: 0; }
+  .verdicts li + li { margin-top: 0; }
+}
+@media screen and (max-width: 1023px) {
+  .marker-frame .marker { width: 22px; height: 22px; font-size: .75rem; }
+}
+@media screen and (max-width: 768px) {
+  .publication-title { font-size: 2rem !important; }
+  .logo-row { gap: 1.1rem; }
+  .logo-row img { height: 36px; }
+  .teaser-line { font-size: 1.1rem; }
+  .paradigm-body { grid-template-columns: minmax(0, 1fr); row-gap: .7rem; }
+  .glosses { flex-direction: row; flex-wrap: wrap; justify-content: center; align-items: center; }
+  .glosses-title { width: 100%; }
+  .chip > span { padding: .05rem .5rem; }
+  .arrow { justify-self: center; width: 2px; height: 20px; margin: 0 0 9px; }
+  .arrow::after {
+    right: auto;
+    top: auto;
+    left: -5px;
+    bottom: -9px;
+    border-top: 9px solid var(--ink);
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 0;
+  }
+  .flow-step { justify-self: center; width: 100%; max-width: 440px; }
+  .verdicts { flex-direction: column; gap: .6rem; }
+  .hl-frame { min-width: 620px; }
+  .row-outline { outline-width: 2px; outline-offset: -1px; }
+  .compare-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  .compare-bar { justify-content: center; }
+  .compare-bar .caption { text-align: center; }
+}
+@media screen and (max-width: 600px) {
+  .marker-frame .marker { width: 16px; height: 16px; font-size: .6rem; box-shadow: 0 0 0 1.5px #fff; }
+}

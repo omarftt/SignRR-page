@@ -1,0 +1,22 @@
+# SignRR project page
+
+Project page for **SignRR: Retrieve and Refine Real Motion for Sign Language Production** (BMVC 2026).
+
+Site: https://omarftt.github.io/SignRR-page/
+
+## Editing
+- All page content is in `index.html`. The palette (blue, teal, amber) and the page components are in `static/css/signrr.css`.
+- **Code button.** It currently says "coming soon". When the code is public, replace the `<span class="button ... is-soon">` block in the header with the link. The comment above that block gives the line to use.
+- **Comparison clips.** These live in `static/videos/comparison/<sequence>/<model>.mp4`: 480×600 px, H.264, one folder per PHOENIX14T test sequence. The sequence list is in `static/js/signrr.js`.
+- **Tables.** These are crops of the paper tables. The amber outline on the SignRR row is a `.row-outline` element positioned in percent over the image.
+
+## Preview locally
+```bash
+python3 -m http.server 8000
+```
+Then open http://localhost:8000.
+
+## Credits
+This site is built from the [Academic Project Page Template](https://github.com/eliahuhorwitz/Academic-project-page-template) (original version), which was adapted from [Nerfies](https://nerfies.github.io).
+
+The website is licensed under [CC BY-SA 4.0](http://creativecommons.org/licenses/by-sa/4.0/).
