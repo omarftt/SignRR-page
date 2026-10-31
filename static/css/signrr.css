@@ -84,13 +84,12 @@ a:hover { color: var(--blue-dark); text-decoration: underline; }
 .lines p { margin-bottom: .6rem !important; }
 
 /* ---------- Figures and captions ---------- */
-.figure img { display: block; width: 100%; height: auto; }
+.figure img, .figure picture { display: block; width: 100%; height: auto; }
 .figure figcaption,
 .table-figure figcaption,
 .caption { font-size: .92rem; color: var(--muted); text-align: center; margin-top: .6rem; }
 
-/* Numbered markers on paper Fig. 2, as on the talk slides */
-.marker-frame { position: relative; }
+/* Numbered step markers */
 .marker {
   display: inline-flex;
   flex: none;
@@ -106,7 +105,6 @@ a:hover { color: var(--blue-dark); text-decoration: underline; }
   font-size: 1rem;
   box-shadow: 0 0 0 2px #fff, 0 1px 4px rgba(23, 33, 43, .3);
 }
-.marker-frame .marker { position: absolute; transform: translate(-50%, -50%); }
 .steps { margin-top: 1.4rem; }
 .step { display: flex; align-items: flex-start; gap: .8rem; }
 .step-title { font-family: var(--title-font); font-weight: 700; font-size: 1.1rem; margin-bottom: .2rem; }
@@ -118,15 +116,7 @@ a:hover { color: var(--blue-dark); text-decoration: underline; }
 .hl-frame img { display: block; width: 100%; height: auto; }
 .row-outline { position: absolute; outline: 3px solid var(--amber); outline-offset: -1.5px; border-radius: 3px; pointer-events: none; }
 
-.callout {
-  background: var(--surface);
-  border-left: 4px solid var(--amber);
-  border-radius: 0 6px 6px 0;
-  padding: .9rem 1.15rem;
-  margin-top: 1.4rem;
-}
-
-/* ---------- Motivation figure (slide 2 of the talk) ---------- */
+/* ---------- Motivation figure ---------- */
 .paradigms { margin: 0 auto 1rem; }
 .paradigm { padding: 1.2rem 0 1.4rem; }
 .paradigm + .paradigm { border-top: 1px solid var(--line); }
@@ -189,7 +179,6 @@ a:hover { color: var(--blue-dark); text-decoration: underline; }
 
 /* ---------- Qualitative comparison ---------- */
 .seq-tabs { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: .4rem; margin-bottom: 1.1rem; }
-.seq-label { margin-right: .35rem; font-size: .9rem; color: var(--muted); }
 .seq-tab {
   padding: .28rem .85rem;
   background: #fff;
@@ -220,16 +209,13 @@ a:hover { color: var(--blue-dark); text-decoration: underline; }
 .fig3 { margin-top: 2.6rem; }
 .fig3 img { padding: 12px; background: #fff; border: 1px solid var(--line); border-radius: 10px; }
 
-/* ---------- Video, BibTeX, footer ---------- */
-.summary-video video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; background: #000; border-radius: 10px; box-shadow: 0 2px 12px rgba(23, 33, 43, .12); }
+/* ---------- BibTeX and footer ---------- */
 .bibtex-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: .8rem; }
 .bibtex-head .title { margin-bottom: 0 !important; font-family: var(--title-font); }
 .bibtex-head .button { font-family: var(--title-font); }
 #BibTeX pre { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; color: var(--ink); font-size: .85rem; }
 .footer { padding: 2.5rem 1.5rem 3rem; background: var(--surface); border-top: 1px solid var(--line); font-size: .9rem; }
 .footer .content { color: var(--muted); }
-.footer .content strong { color: var(--ink); }
-.nowrap { white-space: nowrap; }
 
 /* ---------- Narrower screens ---------- */
 @media screen and (max-width: 1215px) {
@@ -237,11 +223,9 @@ a:hover { color: var(--blue-dark); text-decoration: underline; }
   .verdicts { grid-column: 1 / -1; display: flex; justify-content: center; gap: 3rem; padding-left: 0; }
   .verdicts li + li { margin-top: 0; }
 }
-@media screen and (max-width: 1023px) {
-  .marker-frame .marker { width: 22px; height: 22px; font-size: .75rem; }
-}
 @media screen and (max-width: 768px) {
   .publication-title { font-size: 2rem !important; }
+  .content.has-text-justified { text-align: left !important; }
   .logo-row { gap: 1.1rem; }
   .logo-row img { height: 36px; }
   .teaser-line { font-size: 1.1rem; }
@@ -267,7 +251,4 @@ a:hover { color: var(--blue-dark); text-decoration: underline; }
   .compare-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
   .compare-bar { justify-content: center; }
   .compare-bar .caption { text-align: center; }
-}
-@media screen and (max-width: 600px) {
-  .marker-frame .marker { width: 16px; height: 16px; font-size: .6rem; box-shadow: 0 0 0 1.5px #fff; }
 }

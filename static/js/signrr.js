@@ -1,17 +1,8 @@
-// SignRR project page: comparison clips (sequence tabs, play/pause, replay) and BibTeX copy.
+// SignRR project page: comparison clips (example tabs, play/pause, replay) and BibTeX copy.
+// Each tab carries its clip folder (data-seq) and the PHOENIX14T sequence name (data-name).
 (function () {
   "use strict";
 
-  var SEQUENCES = {
-    "4723": "04October_2010_Monday_tagesschau-4723",
-    "2700": "01October_2010_Friday_tagesschau-2700",
-    "6436": "06May_2011_Friday_tagesschau-6436",
-    "665": "11July_2009_Saturday_tagesschau-665",
-    "6963": "15December_2009_Tuesday_tagesschau-6963",
-    "3412": "17September_2010_Friday_tagesschau-3412",
-    "3226": "26August_2009_Wednesday_tagesschau-3226",
-    "5138": "27November_2011_Sunday_tagesschau-5138"
-  };
   var CLIP_DIR = "static/videos/comparison/";
   var reduceMotion = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
@@ -67,7 +58,7 @@
         t.tabIndex = on ? 0 : -1;
         if (on && moveFocus) t.focus();
       });
-      nameEl.textContent = SEQUENCES[seq] || seq;
+      nameEl.textContent = tabs.filter(function (t) { return t.getAttribute("data-seq") === seq; })[0].getAttribute("data-name");
       attach(seq);
       if (!userPaused) play(true);
     }

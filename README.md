@@ -7,7 +7,8 @@ Site: https://omarftt.github.io/SignRR-page/
 ## Editing
 - All page content is in `index.html`. The palette (blue, teal, amber) and the page components are in `static/css/signrr.css`.
 - **Code button.** It currently says "coming soon". When the code is public, replace the `<span class="button ... is-soon">` block in the header with the link. The comment above that block gives the line to use.
-- **Comparison clips.** These live in `static/videos/comparison/<sequence>/<model>.mp4`: 480×600 px, H.264, one folder per PHOENIX14T test sequence. The sequence list is in `static/js/signrr.js`.
+- **Figures 1 and 2.** These are animated GIFs (`static/images/fig1_overview.gif`, `fig2_architecture.gif`). An amber box walks through the stages, with the step named in a strip under the figure. Visitors who turn off motion get the static PNG.
+- **Comparison clips.** These live in `static/videos/comparison/<sequence>/<model>.mp4`: 480×600 px, H.264, one folder per PHOENIX14T test sequence. Each example tab in `index.html` names its folder (`data-seq`) and its sequence (`data-name`).
 - **Tables.** These are crops of the paper tables. The amber outline on the SignRR row is a `.row-outline` element positioned in percent over the image.
 
 ## Preview locally

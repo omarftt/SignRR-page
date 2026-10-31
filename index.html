@@ -28,7 +28,6 @@
   <meta name="citation_author" content="Farfan, Summy">
   <meta name="citation_author" content="Bejarano, Gissella">
   <meta name="citation_publication_date" content="2026">
-  <meta name="citation_conference_title" content="British Machine Vision Conference (BMVC)">
   <meta name="citation_arxiv_id" content="2608.28568">
   <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2608.28568">
 
@@ -87,11 +86,6 @@
               </a>
             </span>
             <span class="link-block">
-              <a href="#video" class="button is-normal is-rounded is-dark">
-                <span class="icon"><i class="fas fa-film"></i></span><span>Video</span>
-              </a>
-            </span>
-            <span class="link-block">
               <a href="static/pdfs/SignRR_poster.pdf" target="_blank" class="external-link button is-normal is-rounded is-dark">
                 <span class="icon"><i class="fas fa-image"></i></span><span>Poster</span>
               </a>
@@ -111,14 +105,17 @@
   </div>
 </section>
 
-<!-- Teaser: paper Fig. 1 -->
+<!-- Teaser: Figure 1 -->
 <section class="hero teaser">
   <div class="container is-max-widescreen">
     <div class="hero-body">
       <figure class="figure">
-        <img src="static/images/fig1_overview.png" width="1844" height="930"
-             alt="Paper Figure 1. Input glosses are matched to candidate real motion segments in a gloss-motion dictionary; one segment per gloss is selected and assembled, and a part-aware Residual VQ-VAE refines the full sequence into the final signing.">
-        <figcaption>Figure 1: SignRR pipeline: per-gloss retrieval, assembly, and full-sequence refinement.</figcaption>
+        <picture>
+          <source srcset="static/images/fig1_overview.png" media="(prefers-reduced-motion: reduce)">
+          <img src="static/images/fig1_overview.gif" width="1440" height="792"
+               alt="Overview of SignRR, highlighted stage by stage: the input glosses; retrieval of candidate real segments for each gloss from a gloss-motion dictionary; refinement, where one selected segment per gloss is assembled and the full sequence is refined with a part-aware Residual VQ-VAE.">
+        </picture>
+        <figcaption>Figure 1: Overview of SignRR, from per-gloss retrieval to full-sequence refinement.</figcaption>
       </figure>
       <h2 class="subtitle has-text-centered teaser-line">Instead of generating motion from scratch, SignRR refines real retrieved motion into coherent signing.</h2>
     </div>
@@ -153,26 +150,8 @@
   </div>
 </section>
 
-<!-- Video summary -->
-<section class="section" id="video">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="summary-video">
-          <video controls preload="none" playsinline poster="static/images/video_poster.jpg">
-            <source src="static/videos/SignRR_video_summary.mp4" type="video/mp4">
-            <a href="static/videos/SignRR_video_summary.mp4">Download the video (MP4, 8 MB)</a>
-          </video>
-        </div>
-        <p class="caption">Three-minute summary for BMVC 2026.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Motivation: slide 2 of the talk, as a figure -->
-<section class="section divided" id="motivation">
+<!-- Motivation -->
+<section class="section" id="motivation">
   <div class="container is-max-desktop">
     <div class="section-head">
       <p class="eyebrow">Motivation</p>
@@ -200,8 +179,8 @@
           <div class="flow-step">
             <p class="legend-key"><span class="swatch"></span>Malformation</p>
             <img src="static/images/motivation_g2p_frames.png" width="1400" height="562"
-                 alt="G2P-DDM output at frames 11, 22, 32 and 42 from paper Figure 3. The hand at frame 32 is marked as a malformation.">
-            <p class="flow-note">Paper: results for G2P-DDM</p>
+                 alt="G2P-DDM output at frames 11, 22, 32 and 42. The hand at frame 32 is marked as a malformation.">
+            <p class="flow-note">G2P-DDM output</p>
           </div>
           <ul class="verdicts">
             <li><span><strong>Real articulation</strong><em>rare handshapes hard to preserve</em></span><span class="mark no" role="img" aria-label="no"><i class="fas fa-times"></i></span></li>
@@ -224,13 +203,13 @@
           <div class="flow-step">
             <p class="flow-title">Gloss-motion dictionary</p>
             <img src="static/images/motivation_dictionary.png" width="646" height="392"
-                 alt="Paper Figure 1, dictionary rows: candidate real segments for glosses g1 and g2, with the selected candidates outlined.">
+                 alt="Dictionary rows: candidate real segments for glosses g1 and g2, with the selected candidates outlined.">
             <p class="flow-note">real segments from training data</p>
           </div>
           <span class="arrow" aria-hidden="true"></span>
           <div class="flow-step">
             <img src="static/images/motivation_segments.png" width="886" height="298"
-                 alt="Paper Figure 1: the selected segments for g1, g2 and gN joined one after another.">
+                 alt="The selected segments for g1, g2 and gN joined one after another.">
             <p class="flow-note">One real segment per gloss, concatenated</p>
           </div>
           <ul class="verdicts">
@@ -245,15 +224,15 @@
     <div class="columns is-centered">
       <div class="column is-four-fifths">
         <div class="content lines">
-          <p><strong>Generative models</strong> synthesize every frame from a learned prior or from noise. The motion is coherent, but hand shapes are often averaged or malformed.</p>
-          <p><strong>Retrieval</strong> looks up one real segment per gloss and concatenates them. The hands are real, but segments from different signers and speeds break the rhythm of the sentence.</p>
+          <p><strong>Generative models</strong> produce coherent motion, but rare handshapes and signer-specific articulation are hard to preserve.</p>
+          <p><strong>Retrieval</strong> keeps real hand articulation, but segments from different signers and speeds break the rhythm of the sentence.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Method: paper Fig. 2 -->
+<!-- Method: Figure 2 -->
 <section class="section divided" id="method">
   <div class="container is-max-desktop">
     <div class="section-head">
@@ -263,31 +242,34 @@
   </div>
   <div class="container is-max-widescreen">
     <figure class="figure">
-      <div class="marker-frame">
-        <img src="static/images/fig2_architecture.png" width="1916" height="672"
-             alt="Paper Figure 2. The assembled motion is split into body, right hand and left hand. Each part has its own encoder and residual VQ layers. The latent sequence is aligned to the length predicted from the glosses, and a joint decoder outputs the refined motion.">
-        <span class="marker" style="left: 1.56%; top: 34.23%;" aria-hidden="true">1</span>
-        <span class="marker" style="left: 41.50%; top: 27.53%;" aria-hidden="true">2</span>
-        <span class="marker" style="left: 65.66%; top: 31.98%;" aria-hidden="true">3</span>
-      </div>
-      <figcaption>Figure 2: Part-aware Residual VQ-VAE: separate body and hand encoders with residual VQ, latent length alignment, and a joint decoder.</figcaption>
+      <picture>
+        <source srcset="static/images/fig2_architecture.png" media="(prefers-reduced-motion: reduce)">
+        <img src="static/images/fig2_architecture.gif" width="1440" height="568"
+             alt="Part-aware Residual VQ-VAE, highlighted stage by stage: the assembled real segments; part-aware encoders with residual VQ for the body and each hand; length estimation from the glosses and alignment in the latent space; the joint decoder that outputs the refined motion.">
+      </picture>
+      <figcaption>Figure 2: Part-aware Residual VQ-VAE with separate body and hand encoders, residual VQ, length estimation and alignment, and a joint decoder.</figcaption>
     </figure>
   </div>
   <div class="container is-max-desktop">
     <div class="columns steps">
       <div class="column">
         <div class="step"><span class="marker">1</span>
-          <div><p class="step-title">Real segments</p><p>One per gloss, selected from the gloss-motion dictionary for smooth boundaries.</p></div>
+          <div><p class="step-title">Assembled real segments</p><p>One segment per gloss, selected from the gloss-motion dictionary by dynamic programming for smooth boundaries and segment quality.</p></div>
         </div>
       </div>
       <div class="column">
         <div class="step"><span class="marker">2</span>
-          <div><p class="step-title">Part-aware residual VQ</p><p>Body and hands are encoded separately, keeping fine hand detail.</p></div>
+          <div><p class="step-title">Part-aware residual VQ</p><p>The body and each hand have their own encoder, and residual quantization keeps fine hand articulation.</p></div>
         </div>
       </div>
       <div class="column">
         <div class="step"><span class="marker">3</span>
-          <div><p class="step-title">Length alignment</p><p>The model predicts the target length; a joint decoder outputs the refined motion.</p></div>
+          <div><p class="step-title">Length estimation and alignment</p><p>The target length is predicted from the glosses, and the latent sequence is aligned to it.</p></div>
+        </div>
+      </div>
+      <div class="column">
+        <div class="step"><span class="marker">4</span>
+          <div><p class="step-title">Joint decoder</p><p>Decodes the aligned body and hand latents into the refined motion.</p></div>
         </div>
       </div>
     </div>
@@ -302,12 +284,12 @@
   </div>
 </section>
 
-<!-- Results: paper Tables 2 and 3 -->
+<!-- Results: Tables 1 and 2 -->
 <section class="section divided" id="results">
   <div class="container is-max-desktop">
     <div class="section-head">
       <p class="eyebrow">Results</p>
-      <h2 class="title is-3">SignRR achieves the best back-translation on both datasets</h2>
+      <h2 class="title is-3">SignRR achieves the best back-translation scores on both datasets</h2>
     </div>
   </div>
   <div class="container is-max-widescreen">
@@ -315,39 +297,83 @@
       <div class="table-scroll">
         <div class="hl-frame">
           <img src="static/images/table2_phoenix.png" width="2087" height="577" loading="lazy"
-               alt="Paper Table 2, results on PHOENIX14T dev and test. On test, SignRR obtains WER 80.98, BLEU-1 28.78, BLEU-4 10.96, ROUGE 28.15 and MPJPE 53.70.">
+               alt="Results on PHOENIX14T dev and test. On test, SignRR obtains WER 80.98, BLEU-1 28.78, BLEU-4 10.96, ROUGE 28.15 and MPJPE 53.70.">
           <span class="row-outline" style="left: 1.054%; top: 86.458%; width: 97.891%; height: 7.414%;"></span>
         </div>
       </div>
-      <figcaption>Table 2: Results on PHOENIX14T. Bold: best; underlined: second best; †: reproduced under our setting.</figcaption>
+      <figcaption>Table 1: Results on PHOENIX14T. Bold: best; underlined: second best, among non-GT methods. †: reproduced under our setting; other baselines as reported in Sign Stitching.</figcaption>
     </figure>
 
     <figure class="table-figure">
       <div class="table-scroll">
         <div class="hl-frame">
           <img src="static/images/table3_csl.png" width="2087" height="469" loading="lazy"
-               alt="Paper Table 3, results on CSL-Daily dev and test. On test, SignRR obtains BLEU-1 15.45, BLEU-4 1.57, ROUGE 15.46 and MPJPE 115.40.">
+               alt="Results on CSL-Daily dev and test. On test, SignRR obtains BLEU-1 15.45, BLEU-4 1.57, ROUGE 15.46 and MPJPE 115.40.">
           <span class="row-outline" style="left: 1.054%; top: 79.145%; width: 97.891%; height: 15.281%;"></span>
         </div>
       </div>
-      <figcaption>Table 3: Results on CSL-Daily. Bold: best; underlined: second best; †: reproduced under our setting.</figcaption>
+      <figcaption>Table 2: Results on CSL-Daily. Bold: best; underlined: second best, among non-GT methods. †: reproduced under our setting.</figcaption>
     </figure>
   </div>
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-four-fifths">
         <div class="content lines">
-          <p><strong>Back-translation.</strong> A translation model trained on real poses reads the generated poses (WER, BLEU, ROUGE). MPJPE: joint position error.</p>
-          <p><strong>PHOENIX14T.</strong> Best on all back-translation metrics; BLEU-4 rises from 6.67 (Sign Stitching, a retrieval method) to 10.96.</p>
-          <p><strong>CSL-Daily.</strong> Best BLEU-1, BLEU-4 and ROUGE.</p>
-          <p><strong>Speed.</strong> 87.8 ms per sequence on one A100, about 25× faster than G2P-DDM.</p>
+          <p><strong>Back-translation.</strong> A Sign Language Transformer trained on real poses translates the generated poses back into text, which is compared with the reference using WER, BLEU and ROUGE. MPJPE is the joint position error against the ground-truth poses.</p>
+          <p><strong>PHOENIX14T.</strong> Best on all back-translation metrics and second on MPJPE, behind Sign-IDD. On the test set, BLEU-4 is 10.96, against 6.67 for Sign Stitching, a retrieval method.</p>
+          <p><strong>CSL-Daily.</strong> Best on BLEU-1, BLEU-4 and ROUGE, and second on MPJPE, behind Miao et al.</p>
+          <p><strong>Speed.</strong> 87.8 ms per sequence (batch size 1, one A100), similar to Sign-IDD with 10 DDIM steps and about 25× faster than G2P-DDM with 100 diffusion steps.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Qualitative results: comparison clips and paper Fig. 3 -->
+<!-- Analysis: Tables 3 and 4 -->
+<section class="section divided" id="analysis">
+  <div class="container is-max-desktop">
+    <div class="section-head">
+      <p class="eyebrow">Analysis</p>
+      <h2 class="title is-3">Refinement brings most of the gain, and it needs real retrieved motion</h2>
+    </div>
+  </div>
+  <div class="container is-max-widescreen">
+    <figure class="table-figure">
+      <div class="table-scroll">
+        <div class="hl-frame">
+          <img src="static/images/table5_selection_refinement.png" width="2088" height="321" loading="lazy"
+               alt="Selection and refinement analysis on PHOENIX14T test. Retrieval only with DP selection reaches BLEU-1 22.06; SignRR with DP selection and refinement reaches BLEU-1 28.78 and BLEU-4 10.96.">
+          <span class="row-outline" style="left: 1.054%; top: 78.087%; width: 97.893%; height: 11.250%;"></span>
+        </div>
+      </div>
+      <figcaption>Table 3: Selection vs. refinement, PHOENIX14T test. Random: mean ± std over 3 seeds.</figcaption>
+    </figure>
+
+    <figure class="table-figure">
+      <div class="table-scroll">
+        <div class="hl-frame">
+          <img src="static/images/table6_no_retrieval.png" width="2087" height="368" loading="lazy"
+               alt="Refinement without retrieval on PHOENIX14T test. A refiner trained on synthetic input reaches BLEU-1 10.39, or 25.06 with cross-attention; SignRR trained on dictionary segments reaches 28.78.">
+          <span class="row-outline" style="left: 1.054%; top: 67.089%; width: 97.891%; height: 11.700%;"></span>
+        </div>
+      </div>
+      <figcaption>Table 4: Refiner trained on synthetic motion vs. real segments, PHOENIX14T test. Bold: best in each column.</figcaption>
+    </figure>
+  </div>
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <div class="content lines">
+          <p><strong>Selection vs. refinement.</strong> Retrieval alone reaches BLEU-1 22.06 with DP selection and 23.94 with random selection; refinement raises them to 28.78 and 28.23.</p>
+          <p><strong>Without retrieval.</strong> Trained on synthetic motion, the refiner reaches BLEU-1 10.39, or 25.06 with cross-attention to the glosses.</p>
+          <p><strong>Robustness.</strong> Rebuilding the dictionary with gloss boundaries shifted by up to ±16 frames, and retraining, lowers BLEU-4 by at most 0.42. With uniform segmentation instead of CorrNet+, BLEU-4 is still 10.58.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Qualitative results: comparison clips and Figure 3 -->
 <section class="section hero is-light" id="qualitative">
   <div class="container is-max-desktop">
     <div class="section-head">
@@ -356,37 +382,31 @@
     </div>
   </div>
   <div class="container is-max-widescreen" id="comparison">
-    <div class="seq-tabs" role="tablist" aria-label="PHOENIX14T test sequence">
-      <span class="seq-label">Test sequence</span>
-      <button class="seq-tab" role="tab" type="button" data-seq="4723" aria-selected="true">4723</button>
-      <button class="seq-tab" role="tab" type="button" data-seq="2700" aria-selected="false" tabindex="-1">2700</button>
-      <button class="seq-tab" role="tab" type="button" data-seq="6436" aria-selected="false" tabindex="-1">6436</button>
-      <button class="seq-tab" role="tab" type="button" data-seq="665" aria-selected="false" tabindex="-1">665</button>
-      <button class="seq-tab" role="tab" type="button" data-seq="6963" aria-selected="false" tabindex="-1">6963</button>
-      <button class="seq-tab" role="tab" type="button" data-seq="3412" aria-selected="false" tabindex="-1">3412</button>
-      <button class="seq-tab" role="tab" type="button" data-seq="3226" aria-selected="false" tabindex="-1">3226</button>
-      <button class="seq-tab" role="tab" type="button" data-seq="5138" aria-selected="false" tabindex="-1">5138</button>
+    <div class="seq-tabs" role="tablist" aria-label="Examples">
+      <button class="seq-tab" role="tab" type="button" data-seq="665" data-name="11July_2009_Saturday_tagesschau-665" aria-selected="true">Example 1</button>
+      <button class="seq-tab" role="tab" type="button" data-seq="6436" data-name="06May_2011_Friday_tagesschau-6436" aria-selected="false" tabindex="-1">Example 2</button>
+      <button class="seq-tab" role="tab" type="button" data-seq="3226" data-name="26August_2009_Wednesday_tagesschau-3226" aria-selected="false" tabindex="-1">Example 3</button>
     </div>
     <div class="compare-grid" role="tabpanel">
       <figure class="clip is-ours">
-        <video data-model="signrr" muted loop playsinline preload="none" poster="static/videos/comparison/4723/signrr.jpg"></video>
+        <video data-model="signrr" muted loop playsinline preload="none" poster="static/videos/comparison/665/signrr.jpg"></video>
         <figcaption>SignRR (ours)</figcaption>
       </figure>
       <figure class="clip">
-        <video data-model="g2p_ddm" muted loop playsinline preload="none" poster="static/videos/comparison/4723/g2p_ddm.jpg"></video>
+        <video data-model="g2p_ddm" muted loop playsinline preload="none" poster="static/videos/comparison/665/g2p_ddm.jpg"></video>
         <figcaption>G2P-DDM</figcaption>
       </figure>
       <figure class="clip">
-        <video data-model="sign_idd" muted loop playsinline preload="none" poster="static/videos/comparison/4723/sign_idd.jpg"></video>
+        <video data-model="sign_idd" muted loop playsinline preload="none" poster="static/videos/comparison/665/sign_idd.jpg"></video>
         <figcaption>Sign-IDD</figcaption>
       </figure>
       <figure class="clip">
-        <video data-model="miao" muted loop playsinline preload="none" poster="static/videos/comparison/4723/miao.jpg"></video>
+        <video data-model="miao" muted loop playsinline preload="none" poster="static/videos/comparison/665/miao.jpg"></video>
         <figcaption>Miao et al.</figcaption>
       </figure>
     </div>
     <div class="compare-bar">
-      <p class="caption">PHOENIX14T test, <span data-seq-name>04October_2010_Monday_tagesschau-4723</span>. Each clip plays at its own length.</p>
+      <p class="caption">PHOENIX14T test sequence <span data-seq-name>11July_2009_Saturday_tagesschau-665</span></p>
       <div class="buttons">
         <button class="button is-small is-rounded" type="button" data-action="replay">
           <span class="icon"><i class="fas fa-redo"></i></span><span>Replay all</span>
@@ -402,59 +422,14 @@
   <div class="container is-max-widescreen">
     <figure class="figure fig3">
       <img src="static/images/fig3_qualitative.png" width="3173" height="2700" loading="lazy"
-           alt="Paper Figure 3: frames 1 to 94 of one PHOENIX14T test sequence for the ground truth, SignRR, G2P-DDM, Sign-IDD and Miao et al., with colored boxes on frames showing malformation, pose inconsistency, structural loss or shrinkage.">
+           alt="Frames 1 to 94 of one PHOENIX14T test sequence for the ground truth, SignRR, G2P-DDM, Sign-IDD and Miao et al., with colored boxes on frames showing malformation, pose inconsistency, structural loss or shrinkage.">
       <figcaption>Figure 3: Qualitative comparison on PHOENIX14T. Boxes mark malformation, pose inconsistency, structural loss and shrinkage.</figcaption>
     </figure>
   </div>
 </section>
 
-<!-- Analysis: paper Tables 5 and 6 -->
-<section class="section" id="analysis">
-  <div class="container is-max-desktop">
-    <div class="section-head">
-      <p class="eyebrow">Analysis</p>
-      <h2 class="title is-3">Refinement brings the gain, and it needs real retrieved motion</h2>
-    </div>
-  </div>
-  <div class="container is-max-widescreen">
-    <figure class="table-figure">
-      <div class="table-scroll">
-        <div class="hl-frame">
-          <img src="static/images/table5_selection_refinement.png" width="2088" height="321" loading="lazy"
-               alt="Paper Table 5, selection and refinement analysis on PHOENIX14T test. Retrieval only with DP selection reaches BLEU-1 22.06; SignRR with DP selection and refinement reaches BLEU-1 28.78 and BLEU-4 10.96.">
-          <span class="row-outline" style="left: 1.054%; top: 78.087%; width: 97.893%; height: 11.250%;"></span>
-        </div>
-      </div>
-      <figcaption>Table 5: Selection vs. refinement, PHOENIX14T test. Random: mean ± std over 3 seeds.</figcaption>
-    </figure>
-
-    <figure class="table-figure">
-      <div class="table-scroll">
-        <div class="hl-frame">
-          <img src="static/images/table6_no_retrieval.png" width="2087" height="368" loading="lazy"
-               alt="Paper Table 6, refinement without retrieval on PHOENIX14T test. A refiner trained on synthetic input reaches BLEU-1 10.39, or 25.06 with cross-attention; SignRR trained on dictionary segments reaches 28.78.">
-          <span class="row-outline" style="left: 1.054%; top: 67.089%; width: 97.891%; height: 11.700%;"></span>
-        </div>
-      </div>
-      <figcaption>Table 6: Refiner trained on synthetic motion vs. real segments, PHOENIX14T test. Bold: best in each column.</figcaption>
-    </figure>
-  </div>
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-four-fifths">
-        <div class="content lines">
-          <p><strong>Selection vs. refinement.</strong> Retrieval alone reaches BLEU-1 22.06; refining the same assembly raises it to 28.78.</p>
-          <p><strong>Without retrieval.</strong> Trained on synthetic motion, the refiner reaches BLEU-1 10.39, or 25.06 with cross-attention to the glosses.</p>
-          <p><strong>Robustness.</strong> Perturbing gloss boundaries by up to ±16 frames lowers BLEU-4 by at most 0.42.</p>
-        </div>
-        <p class="callout"><strong>Takeaway:</strong> most of the gain comes from refinement, and it works best on real retrieved motion.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- BibTeX -->
-<section class="section divided" id="BibTeX">
+<section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <div class="bibtex-head">
       <h2 class="title">BibTeX</h2>
@@ -462,11 +437,14 @@
         <span class="icon"><i class="far fa-copy"></i></span><span data-label>Copy</span>
       </button>
     </div>
-    <pre><code id="bibtex">@inproceedings{titocruz2026signrr,
-  title     = {SignRR: Retrieve and Refine Real Motion for Sign Language Production},
-  author    = {Tito Cruz, Fidel Omar and Sanchez Marquina, Angie and Farfan, Summy and Bejarano, Gissella},
-  booktitle = {Proceedings of the British Machine Vision Conference (BMVC)},
-  year      = {2026}
+    <pre><code id="bibtex">@misc{titocruz2026signrr,
+  title         = {{SignRR}: Retrieve and Refine Real Motion for Sign Language Production},
+  author        = {Tito Cruz, Fidel Omar and Sanchez Marquina, Angie and Farfan, Summy and Bejarano, Gissella},
+  year          = {2026},
+  eprint        = {2608.28568},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2608.28568}
 }</code></pre>
   </div>
 </section>
@@ -476,10 +454,9 @@
     <div class="columns is-centered">
       <div class="column is-8">
         <div class="content">
-          <p><strong>Acknowledgment.</strong> This work was funded by the Schmidt Sciences AI2050 Early Career Fellowship, Grant <span class="nowrap">G-23-66054</span>.</p>
           <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>, which was adapted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the source code of this website; we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
             Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
         </div>
