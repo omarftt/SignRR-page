@@ -52,17 +52,6 @@ a:hover { color: var(--blue-dark); text-decoration: underline; }
 .publication-links .button.is-dark { background-color: var(--blue); color: #fff; }
 .publication-links .button.is-dark:hover,
 .publication-links .button.is-dark:focus { background-color: var(--blue-dark); color: #fff; }
-.button.is-soon,
-.button.is-soon:hover { background: #fff; border: 1px solid #C3CCD6; color: var(--muted); cursor: default; }
-.button.is-soon .soon {
-  margin-left: .5em;
-  padding: .1em .6em;
-  border-radius: 999px;
-  background: var(--surface);
-  font-size: .72em;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
 
 /* ---------- Teaser ---------- */
 .teaser .hero-body { padding-top: .5rem; padding-bottom: 2.5rem; }
